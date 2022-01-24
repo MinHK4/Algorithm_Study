@@ -1,6 +1,5 @@
-5 2
-ae
-cd
-aa
-za
-ce
+2
+7 AGTGATG
+5 GTTAG
+7 AGCTATT
+9 AGCTTTAAA

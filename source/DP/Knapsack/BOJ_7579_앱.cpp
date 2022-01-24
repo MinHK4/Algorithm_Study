@@ -1,3 +1,5 @@
+// https://www.acmicpc.net/problem/7579
+
 #include <bits/stdc++.h>
  
 using namespace std;
@@ -13,7 +15,7 @@ int main() {
 
   int N, M;
   cin >> N >> M;
-
+  
   vector<pii> arr(N+1);
   int max_m = -1;
   for(int i=1; i<=N; i++){
@@ -36,3 +38,10 @@ int main() {
 
   cout << *min_element(dp.begin()+M, dp.end());
 }
+
+/*
+DP 1차원 큰 인덱싱부터로 중복 사용없이 처리해주고
+가중치보다 크게 사용했지만 오히려 값이 더 작은 경우를 위해서
+배열을 딱 그 크기만큼 선언하는 것이 아니라 더 크게 잡은 다음에
+DP[가중치]부터 그 뒤 DP값들 중에서 최소값을 출력해준다.
+*/
