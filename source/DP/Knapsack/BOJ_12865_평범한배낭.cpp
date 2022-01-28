@@ -7,7 +7,7 @@ using pii = pair <ll, ll>;
 int main() {
   ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
  
-  //freopen("inp.txt", "r", stdin);
+  // freopen("inp.txt", "r", stdin);
 
   int N, K;
   cin >> N >> K;
