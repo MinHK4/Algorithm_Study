@@ -1,3 +1,5 @@
+// https://codeforces.com/contest/1282/problem/A
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -48,3 +50,9 @@ int main() {
     cout << ans << '\n';
   }
 }
+
+/*
+범위 안의 카운팅 해주는 문제
+실제 반복문 돌리면 시간초과 뜨고
+점들의 카운트하는게 하는게 구간을 카운트하는 것 조심하기
+*/ 

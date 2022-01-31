@@ -1,3 +1,5 @@
+// https://www.acmicpc.net/problem/14680
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -41,7 +43,7 @@ int main() {
     }
 
     vector<vector<ll>> temp2(51, vector<ll>(51, 0));
-    for (ll j=1; j<=v[i].first; j++){
+    for (ll j=1; j<=v[0].first; j++){
       for(ll k=1; k<=v[i+1].second; k++){
         for(ll l=1; l<=v[i].second; l++)
           temp2[j][k] = (temp2[j][k] + ((temp[j][l] * arr[i+1][l][k]) % mod)) % mod;
@@ -61,3 +63,8 @@ int main() {
   }
   cout << ans;
 }
+
+/*
+집합의 곱셈 구현해주기 
+인덱싱 처리 신경써서 해주기만 하면 됨
+*/ 
