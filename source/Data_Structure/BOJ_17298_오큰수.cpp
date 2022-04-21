@@ -20,10 +20,7 @@ int main() {
   
   stack <int> st;
   vector<int> ans(N);
-  st.push(arr[N-1]);
-  ans[N-1] = -1;
-
-  for(int i=N-2; i>=0; i--){
+  for(int i=N-1; i>=0; i--){
     while(!st.empty() && st.top() <= arr[i])
       st.pop();
     
@@ -38,7 +35,6 @@ int main() {
 
   for(int x : ans)
     cout << x << ' ';
-
 }
 /*
 IDAE : deque 이용해서 현재 인덱스의 뒤 중에서 증가하는 수 관리해주기
