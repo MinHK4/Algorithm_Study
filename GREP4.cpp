@@ -233,7 +233,7 @@ void backtrack(vector<bool> v, int idx, int cnt){
     for(int i=idx; i<limit; i++){
         if(move_check(v, i)){
             vector<bool> temp = v;
-            fill_in(&temp, i);
+            fill_in(temp, i);
             backtrack(temp, i+1, cnt+1);
         }
     }
