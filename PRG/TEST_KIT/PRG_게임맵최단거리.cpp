@@ -1,97 +1,38 @@
-#include<vector>
-#include<queue>
+// https://school.programmers.co.kr/learn/courses/30/lessons/1844
+
+#include<bits/stdc++.h>
+
 using namespace std;
+using pii = pair <int, int>;
 
-struct Pos {
-    int y;
-    int x;
-    int dist; // 거리
-};
-
-int solution(vector<vector<int> > maps)
-{
-    int answer = -1;
+int solution(vector<vector<int>> maps){
     
-    const int n = maps.size();
-    const int m = maps[0].size();
-    int deltaY[4] = { -1, 0, 1, 0 };
-    int deltaX[4] = { 0, 1, 0, -1 };
-
-    vector<vector<bool>> checked(n, vector<bool>(m));
-    queue<Pos> q;
-
-    q.push({0, 0, 1}); // 출발지의 거리는 1
-    checked[0][0] = true;
-
-    while (!q.empty()) {
-        Pos pos = q.front();
+    int dx[] = {0, 0, 1, -1};
+    int dy[] = {1, -1, 0, 0};
+    
+    int n = maps.size();
+    int m = maps[0].size();
+    
+    queue<pii> q;
+    q.push({0, 0});
+    
+    while(!q.empty()){
+        int x = q.front().first;
+        int y = q.front().second;
         q.pop();
         
-        int nowY = pos.y;
-        int nowX = pos.x;
-        int now_dist = pos.dist;
-        
-        if (nowY == n - 1 && nowX == m - 1) // 목적지 원소(Pos) Pop될시 거리를 answer 에 옮겨주기
-            answer = now_dist;
-
-        for (int i = 0; i < 4; ++i) {
-            int nextY = nowY + deltaY[i];
-            int nextX = nowX + deltaX[i];
-
-            if (nextY < 0 || nextY >= n || nextX < 0 || nextX >= m)
-                continue;
-            if (maps[nextY][nextX] == 0)
-                continue;
-            if (checked[nextY][nextX])
-                continue;
-
-            q.push({nextY, nextX, now_dist + 1}); // 거리 저장
-            checked[nextY][nextX] = true;
+        for(int i=0; i<4; i++){
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            
+            if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue; // 범위 벗어나는 인덱스 버리기
+            if(maps[nx][ny] != 1) continue; // 벽이거나 이미 들른 위치는 버리기
+                
+            maps[nx][ny] = maps[x][y] + 1;
+            q.push({nx, ny});
         }
     }
-        
-    return answer;
+    
+    if(maps[n-1][m-1] != 1) return maps[n-1][m-1];
+    return -1;
 }
-
-
-
-// #include<bits/stdc++.h>
-
-// using namespace std;
-// using pii = pair <int, int>;
-
-// vector<vector<int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-// int answer = INT_MAX;
-// int width, height;
-
-// bool checkValidPos(int row, int col){
-//     return 0 <= row && row < width &&  0 <= col && col < height;
-// }
-
-// int solution(vector<vector<int>> maps){
-//     width = maps.size();
-//     height = maps[0].size();
-    
-//     queue<pii> q;
-//     q.push({0, 0});
-    
-//     while(!q.empty()){
-//         pii cur = q.front();
-//         q.pop();
-        
-//         for(auto dir : dirs){
-//             int new_r = cur.first + dir[0], new_c = cur.second + dir[1];
-            
-//             if(!checkValidPos(new_r, new_c)) continue;
-//             if(maps[new_r][new_c] != 1 || new_r + new_c == 0) continue;
-                
-//             maps[new_r][new_c] = maps[cur.first][cur.second] + 1;
-//             q.push({new_r, new_c});
-//         }
-        
-//         if(maps[width-1][height-1] != 1) return maps[width-1][height-1];
-//     }
-    
-//     return -1;
-// }
-
