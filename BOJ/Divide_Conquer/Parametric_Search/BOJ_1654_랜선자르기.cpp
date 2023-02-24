@@ -59,3 +59,57 @@ Division by zero
 안전하게 이분탐색 범위 설정한다고 키워서 0을 시작점을 잡았는데
 그냥 최소와 최솟값 범위로 유효한 값 범위로 잡아서 돌리기
 */
+
+
+// ------------------------------ 
+//  재풀이 : 2023.02.24
+// ------------------------------ 
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+using pii = pair <int, int>;
+
+vector<int> arr;
+ll N, K;
+
+bool solve(int target){
+  int cnt = 0;
+  for(auto num : arr){
+    cnt += num / target;
+  }
+
+  if(cnt >= K) return true;
+  return false;
+}
+
+int main() {
+  ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+
+  cin >> N >> K;
+  
+  arr.resize(N);
+  int max_val = -1;
+  for(int i=0; i<N; i++){
+    cin >> arr[i];
+    max_val = max(max_val, arr[i]);
+  }
+
+  ll answer = 1;
+  ll s = 1;
+  ll e = max_val;
+  while(s <= e){
+    ll mid = (s + e) / 2;
+    if(solve(mid)){
+      answer = mid;
+      s = mid + 1;
+    }
+    else {
+      e = mid - 1;
+    }
+  }
+
+  cout << answer;
+}
+
