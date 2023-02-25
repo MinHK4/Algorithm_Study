@@ -48,5 +48,5 @@ int solution(string word){
     answer += 1 + alp[w] * next_word[i++];
   }
 
-  return answer
+  return answer;
 }
