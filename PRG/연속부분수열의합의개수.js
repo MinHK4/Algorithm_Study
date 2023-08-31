@@ -1,5 +1,29 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/131701
 
+function solution(elements) {
+  var answer = 0;
+  const sum = (arr) => arr.reduce((a, b) => a + b, 0);
+
+  const set = new Set();
+
+  for (let i = 1; i <= elements.length; i++) {
+    for (let j = 0; j < elements.length; j++) {
+      if (j + i > elements.length) {
+        set.add(
+          sum(elements.slice(j, elements.length)) +
+            sum(elements.slice(0, j + i - elements.length))
+        );
+      } else {
+        set.add(sum(elements.slice(j, j + i)));
+      }
+    }
+  }
+
+  answer = set.size;
+
+  return answer;
+}
+
 function solution1(elements) {
   const circular = elements.concat(elements);
   const set = new Set();
